@@ -1,8 +1,8 @@
 # Estuary Stats Tweeter.
 
-Simple Estuary Stat "Tweeter"
+Simple Estuary stat "Tweeter"
 
-## Set up twitter
+## Set up twitter API key
 
 ```
 CONSUMER_KEY=redacted

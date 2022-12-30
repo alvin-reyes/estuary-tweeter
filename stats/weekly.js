@@ -1,5 +1,6 @@
 const Twitter = require("twitter");
 const MetricsApi = require('./metrics.js');
+const axios = require("axios");
 
 class WeeklyTwitterStats {
 
@@ -19,22 +20,27 @@ class WeeklyTwitterStats {
         var last7Days = new Date(new Date().setDate(today.getDate() - 7));
 
         // reformat date
-        var todayDate = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-        var last7DaysDate = last7Days.getDate() + '-' + (last7Days.getMonth() + 1) + '-' + last7Days.getFullYear();
+        var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var last7DaysDate = last7Days.getFullYear() + '-' + (last7Days.getMonth() + 1) + '-' + last7Days.getDate();
+
+        axios.get(this.metricsApi.apiHost + '?from=' + last7DaysDate + '&to=' + todayDate)
+            .then((response) => {
+                console.log("weekly");
+                console.log(response.data);
+                this.simpleTextGen.display(response.data);
+            })
 
         // pass to data
-
-        // pass to data
-        this.client.post(
-            'statuses/update',
-            // { status: canvas.toDataURL() },
-            {status: this.display },
-            function (error, tweet, response) {
-                if (error) throw error;
-                console.log(tweet); // Tweet body.
-                console.log(response); // Raw response object.
-            }
-        );
+        // this.client.post(
+        //     'statuses/update',
+        //     // { status: canvas.toDataURL() },
+        //     {status: this.display },
+        //     function (error, tweet, response) {
+        //         if (error) throw error;
+        //         console.log(tweet); // Tweet body.
+        //         console.log(response); // Raw response object.
+        //     }
+        // );
     }
 
 }

@@ -1,0 +1,17 @@
+{
+  "name": "estuary-twitter-stats",
+  "version": "1.0.0",
+  "description": "Daily, Weekly and Monthly Tweets of Estuary Stats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["twitter", "stats", "estuary"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.11.0",
+    "node-schedule": "^2.1.0",
+    "twitter": "^1.7.1"
+  }
+}

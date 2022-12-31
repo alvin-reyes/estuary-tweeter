@@ -1,4 +1,4 @@
-# Estuary Stats Tweeter.
+# Estuary statistics tweeter.
 
 Simple Estuary stat "Tweeter"
 

@@ -16,6 +16,24 @@ ACCESS_TOKEN_SECRET=redacted
 node index.js
 ```
 
+This runs a job that will run on the following scheduler
+```
+// Run daily every day at 1:00pm
+Schedule.scheduleJob('0 1 * * *', () => {
+    daily.run();
+})
+
+// Run weekly 10:00AM on Friday
+Schedule.scheduleJob('0 10 * * 5', () => {
+    weekly.run();
+})
+
+// Run monthly 12AM 1st day of the Month
+Schedule.scheduleJob('0 0 1 * *', () => {
+    monthly.run();
+})
+```
+
 ## Other utils
 To quickly generate a stats text to tweet.
 ```

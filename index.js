@@ -12,7 +12,6 @@ const daily = new DailyTwitterStats();
 const weekly = new WeeklyTwitterStats();
 const monthly = new MonthlyTwitterStats();
 
-
 // Run daily every day at 1:00pm
 Schedule.scheduleJob('0 1 * * *', () => {
     daily.run();
@@ -30,7 +29,7 @@ Schedule.scheduleJob('0 0 1 * *', () => {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// for testing ONLY - entire section will be removed after
+// for testing ONLY - entire section will be removed later
 // const Twitter = require('twitter');
 // const client = new Twitter({
 //     consumer_key: process.env.CONSUMER_KEY,

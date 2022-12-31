@@ -7,16 +7,20 @@ class TwitterSimpleTextGen {
     generateTwitterPost(json) {
 
         this.display = `
-            @Estuary_Tech Stats:
+                  
+            @Estuary_Tech stats:
             
-            Contents added (24 hours): { contentAdded }
-            Deals sealed (24 hours):  { sealedDeals }
+            from 2022-12-29 to 2022-12-30
             
-            For more ℹ️ about 
-            @Estuary_Tech:
+            🗂️Content deals: 45
+            🗄️Total size of deals: 120815614277
+            💼Sealed deals: 0
+            
+            For more ℹ️ about Estuary:
             🌐https://estuary.tech
             📄https://docs.estuary.tech
-            🧑‍💻https://github.com/application-research/estuary
+            
+
         `;
 
         return this.display;

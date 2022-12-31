@@ -9,15 +9,6 @@ const TwitterSimpleTextGen = require('./simple-text-gen.js')
 const axios = require("axios");
 
 class DailyTwitterStats {
-//
-// {
-//     totalContentDeals: 45,
-//     totalContentDealsSize: 47078564974,
-//     totalSealedDeals: 0,
-//     totalStorageProviders: 0,
-//     totalUsers: 1
-// }
-//
 
 constructor() {
         this.metricsApi = new MetricsApi();
@@ -40,16 +31,27 @@ constructor() {
         // reformat date
         var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var yesterdayDate = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1) + '-' + yesterday.getDate();
-
+        var display = "";
         //  pass to metrics api
         axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)
             .then((response) => {
-                console.log("daily");
-                console.log(response.data);
-                this.simpleTextGen.display(response.data);
+                display = this.simpleTextGen.generateTwitterPost(response.data, yesterdayDate, todayDate);
+                console.log(display);
+                this.client.post(
+                    'statuses/update',
+                    // { status: canvas.toDataURL() },
+                    {status: display },
+                    function (error, tweet, response) {
+                        if (error) throw error;
+                        console.log(tweet); // Tweet body.
+                        console.log(response); // Raw response object.
+                    }
+                );
             })
 
         // parse and return.
+
+
 
 
         // pass to data

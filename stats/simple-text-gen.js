@@ -4,22 +4,21 @@ class TwitterSimpleTextGen {
     constructor() {
     }
 
-    generateTwitterPost(json) {
+    generateTwitterPost(json, from, to) {
 
         this.display = `
-                  
-            @Estuary_Tech stats:
-            
-            from 2022-12-29 to 2022-12-30
-            
-            🗂️Content deals: 45
-            🗄️Total size of deals: 120815614277
-            💼Sealed deals: 0
-            
-            For more ℹ️ about Estuary:
-            🌐https://estuary.tech
-            📄https://docs.estuary.tech
-            
+        
+@Estuary_Tech stats:
+
+from ${from} to ${to}
+
+🗂️Content deals: ${json.totalContentDeals}
+🗄️Total size of deals: ${json.totalContentDealsSize}
+💼Sealed deals: ${json.totalSealedDeals}
+
+For more ℹ️ about Estuary:
+🌐https://estuary.tech
+📄https://docs.estuary.tech
 
         `;
 

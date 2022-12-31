@@ -1,7 +1,8 @@
-# Estuary statistics tweeter.
+# Estuary statistics tweeter
 
 Simple Estuary stat "Tweeter"
 
+This uses the metrics-api web service endpoint: https://metrics-api.estuary.tech/api/v1/stats/to-twitter?from=2022-12-01&to=2022-12-30. Dates varies based on the scheduled job run.
 ## Set up twitter API key
 
 ```

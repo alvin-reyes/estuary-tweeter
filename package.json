@@ -20,5 +20,9 @@
     "node-schedule": "^2.1.0",
     "twitter": "^1.7.1",
     "twitter-api-v2": "^1.13.0"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
+

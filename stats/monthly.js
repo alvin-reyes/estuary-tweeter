@@ -1,4 +1,5 @@
 const Twitter = require("twitter");
+const {TwitterApi} = require("twitter-api-v2");
 const MetricsApi = require('./metrics.js');
 const axios = require("axios");
 const TwitterSimpleTextGen = require("./simple-text-gen");
@@ -26,20 +27,11 @@ class MonthlyTwitterStats {
         var last30DaysDate = last30Days.getFullYear() + '-' + (last30Days.getMonth() + 1) + '-' + last30Days.getDate();
         var display = "";
         //  pass to metrics api
-        axios.get(this.metricsApi.apiHost + '?from=' + last30DaysDate + '&to=' + todayDate)
-            .then((response) => {
-                display = this.simpleTextGen.generateTwitterPost(response.data, last30DaysDate, todayDate);
-                console.log(display);
-                this.client.post(
-                    'statuses/update',
-                    // { status: canvas.toDataURL() },
-                    {status: display },
-                    function (error, tweet, response) {
-                        if (error) throw error;
-                        console.log(tweet); // Tweet body.
-                        console.log(response); // Raw response object.
-                    }
-                );
+        axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)
+            .then(async (response) => {
+                display = this.simpleTextGen.generateTwitterPost(response.data, yesterdayDate, todayDate);
+                const {data: createdTweet} = await this.client.v2.tweet(display, {});
+                console.log('Tweet', createdTweet.id, ':', createdTweet.text);
             })
     }
 

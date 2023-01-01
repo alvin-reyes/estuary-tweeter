@@ -1,4 +1,5 @@
 const Twitter = require("twitter");
+const {TwitterApi} = require("twitter-api-v2");
 const MetricsApi = require('./metrics.js');
 const axios = require("axios");
 const TwitterSimpleTextGen = require("./simple-text-gen.js");
@@ -25,22 +26,11 @@ class WeeklyTwitterStats {
         var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var last7DaysDate = last7Days.getFullYear() + '-' + (last7Days.getMonth() + 1) + '-' + last7Days.getDate();
         var display = "";
-        axios.get(this.metricsApi.apiHost + '?from=' + last7DaysDate + '&to=' + todayDate)
-            .then((response) => {
-                display = this.simpleTextGen.generateTwitterPost(response.data,last7DaysDate,todayDate);
-                console.log(display);
-
-                // pass to data
-                this.client.post(
-                    'statuses/update',
-                    // { status: canvas.toDataURL() },
-                    {status: display },
-                    function (error, tweet, response) {
-                        if (error) throw error;
-                        console.log(tweet); // Tweet body.
-                        console.log(response); // Raw response object.
-                    }
-                );
+        axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)
+            .then(async (response) => {
+                display = this.simpleTextGen.generateTwitterPost(response.data, yesterdayDate, todayDate);
+                const {data: createdTweet} = await this.client.v2.tweet(display, {});
+                console.log('Tweet', createdTweet.id, ':', createdTweet.text);
             })
 
     }

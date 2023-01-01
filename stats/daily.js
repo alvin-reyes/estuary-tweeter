@@ -31,7 +31,7 @@ constructor() {
 
         // reformat date
         var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate());
-        var yesterdayDate = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1) + '-' + (yesterday.getDate() - 2);
+        var yesterdayDate = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1) + '-' + (yesterday.getDate());
         var display = "";
         //  pass to metrics api
         axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)
@@ -40,9 +40,7 @@ constructor() {
                 const {data: createdTweet} = await this.client.v2.tweet(display, {});
                 console.log('Tweet', createdTweet.id, ':', createdTweet.text);
             })
-
     }
-
 }
 
 module.exports = DailyTwitterStats;

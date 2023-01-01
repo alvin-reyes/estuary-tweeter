@@ -5,21 +5,25 @@ class TwitterSimpleTextGen {
     }
 
     generateTwitterPost(json, from, to) {
+        // 2 decimal places
+        let contentSize = json.totalContentDealsSize / 1024 / 1024 / 1024
+        let contentSizeN = Math.round(contentSize * 100) / 100
+
+        let sealedSize = json.totalSealedDeals / 1024 / 1024 / 1024
+        let sealedSizeN = Math.round(sealedSize * 100) / 100
 
         this.display = `
-        
 @Estuary_Tech stats:
 
 from ${from} to ${to}
 
-🗂Content deals made over 24 hours: ${json.totalContentDeals} 
-🗄 Content deals size made over 24 hours: ${json.totalContentDealsSize / 1024 / 1024 / 1024} GB
-💼 Sealed deals over 24 hours: ${json.totalSealedDeals}
-🤝 Total size of sealed deals over 24 hours: ${json.totalSealedDealsSize / 1024 / 1024 / 1024} GB
+🗂Content deals: ${json.totalContentDeals} 
+🗄Content deals size: ${contentSizeN} GB
+💼Sealed deals: ${json.totalSealedDeals}
+🤝Sealed deals: ${sealedSizeN} GB
 
-For more ℹ️ about Estuary:
+More about Estuary:
 🌐https://estuary.tech
-📄https://docs.estuary.tech
 
         `;
 

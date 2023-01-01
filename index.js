@@ -4,8 +4,8 @@ const Schedule = require('node-schedule');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const TwitterCanvasGenerator = require('./stats/canvas-gen.js');
-const TwitterSimpleTextGen = require('./stats/simple-text-gen.js');
+
+//   initialize the stats runner
 const DailyTwitterStats = require('./stats/daily.js');
 const WeeklyTwitterStats = require('./stats/weekly.js');
 const MonthlyTwitterStats = require('./stats/monthly.js');
@@ -14,7 +14,6 @@ const daily = new DailyTwitterStats();
 const weekly = new WeeklyTwitterStats();
 const monthly = new MonthlyTwitterStats();
 
-daily.run();
 // Run daily every day at 1:00pm
 Schedule.scheduleJob('0 1 * * *', () => {
     daily.run();

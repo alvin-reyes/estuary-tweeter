@@ -9,18 +9,18 @@ class TwitterSimpleTextGen {
         let contentSize = json.totalContentDealsSize / 1024 / 1024 / 1024
         let contentSizeN = Math.round(contentSize * 100) / 100
 
-        let sealedSize = json.totalSealedDeals / 1024 / 1024 / 1024
+        let sealedSize = json.totalSealedDealsSize / 1024 / 1024 / 1024
         let sealedSizeN = Math.round(sealedSize * 100) / 100
 
         this.display = `
-@Estuary_Tech stats:
+@Estuary_Tech daily stats:
 
 from ${from} to ${to}
 
 🗂Content deals: ${json.totalContentDeals} 
 🗄Content deals size: ${contentSizeN} GB
 💼Sealed deals: ${json.totalSealedDeals}
-🤝Sealed deals: ${sealedSizeN} GB
+🤝Sealed deals size: ${sealedSizeN} GB
 
 More about Estuary:
 🌐https://estuary.tech

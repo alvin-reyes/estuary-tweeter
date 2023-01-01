@@ -38,14 +38,14 @@ Schedule.scheduleJob('0 0 1 * *', () => {
 ## Other utils
 To quickly generate a stats text to tweet.
 ```
-node manual-generator.js 2022-12-30 to 2022-12-31
+node utils/report-stats.js 2022-12-30 2022-12-31
 ```
 
 ## Output
 ```
 @Estuary_Tech stats:
 
-from 2022-12-30 to 2022-12-31
+from 2022-12-31 to 2022-01-01
 
 🗂️Content deals made over 24 hours: 44
 🗄Content deals size made over 24 hours: 699.41 GB

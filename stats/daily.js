@@ -1,17 +1,13 @@
-
-
-// twitter
-const Twitter = require("twitter");
-
 // metrics and a simple text gen.
-const MetricsApi = require('./metrics.js');
-const TwitterSimpleTextGen = require('./simple-text-gen.js')
+const MetricsApi = require('../api/metrics.js');
 const axios = require("axios");
+const TwitterSimpleTextGen = require('../templates/simple-text-gen.js')
 const {TwitterApi} = require("twitter-api-v2");
 
 class DailyTwitterStats {
 
-constructor() {
+
+    constructor() {
         this.metricsApi = new MetricsApi();
         this.simpleTextGen = new TwitterSimpleTextGen();
         this.client = new TwitterApi({
@@ -20,7 +16,6 @@ constructor() {
             accessToken: process.env.ACCESS_TOKEN_KEY,
             accessSecret: process.env.ACCESS_TOKEN_SECRET,
         });
-
     }
 
     run() {
@@ -38,14 +33,15 @@ constructor() {
         var dayYesterday = `${ yesterday.getDate() }`.padStart(2, '0');
         var yesterdayDate = `${ yesterday.getFullYear() }-${ monthYesterday }-${ dayYesterday }`;
 
-        //var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate());
-        //var yesterdayDate = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1) + '-' + (yesterday.getDate());
         var display = "";
         //  pass to metrics api
         axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)
             .then(async (response) => {
+
                 display = this.simpleTextGen.generateTwitterPost(response.data, yesterdayDate, todayDate);
-                const {data: createdTweet} = await this.client.v2.tweet(display, {});
+                const {data: createdTweet} = await this.client.v2.tweet(display, {
+
+                });
                 console.log('Tweet', createdTweet.id, ':', createdTweet.text);
             })
     }

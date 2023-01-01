@@ -1,5 +1,5 @@
 
-const MetricsApi = require('./stats/metrics.js');
+const MetricsApi = require('../api/metrics.js');
 const axios = require("axios");
 
 const metricsApi = new MetricsApi()
@@ -13,8 +13,9 @@ axios.get(metricsApi.apiHost + '?from=' + args[0] + '&to=' + args[1])
         contentSize = json.totalContentDealsSize / 1024 / 1024 / 1024
         let contentSizeN = Math.round(contentSize * 100) / 100
 
-        sealedSize = json.totalSealedDeals / 1024 / 1024 / 1024
+        let sealedSize = json.totalSealedDealsSize / 1024 / 1024 / 1024
         let sealedSizeN = Math.round(sealedSize * 100) / 100
+
         display = `
 @Estuary_Tech stats:
 

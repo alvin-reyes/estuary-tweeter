@@ -4,7 +4,6 @@ const Schedule = require('node-schedule');
 const dotenv = require('dotenv');
 dotenv.config();
 
-daily.run();
 //   initialize the stats runner
 const DailyTwitterStats = require('./stats/daily.js');
 const WeeklyTwitterStats = require('./stats/weekly.js');

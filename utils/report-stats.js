@@ -21,10 +21,10 @@ axios.get(metricsApi.apiHost + '?from=' + args[0] + '&to=' + args[1])
 
 from ${args[0]} to ${args[1]}
 
-🗂️Content deals made over 24 hours: ${json.totalContentDeals}
-🗄Content deals size made over 24 hours: ${contentSizeN} GB
-💼Sealed deals over 24 hours: ${json.totalSealedDeals}
-🤝Total size of sealed deals over 24 hours: ${sealedSizeN} GB
+🗂️Content deals made: ${json.totalContentDeals}
+🗄Content deals size made: ${contentSizeN} GB
+💼Sealed deals: ${json.totalSealedDeals}
+🤝Total size of sealed deals made: ${sealedSizeN} GB
 
 For more ℹ️ about Estuary:
 🌐https://estuary.tech

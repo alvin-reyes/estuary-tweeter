@@ -14,6 +14,7 @@ const daily = new DailyTwitterStats();
 const weekly = new WeeklyTwitterStats();
 const monthly = new MonthlyTwitterStats();
 
+daily.run();
 // Run daily every day at 1:00pm
 Schedule.scheduleJob('0 1 * * *', () => {
     daily.run();

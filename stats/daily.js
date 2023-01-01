@@ -30,8 +30,16 @@ constructor() {
         var yesterday = new Date(new Date().setDate(today.getDate() - 1));
 
         // reformat date
-        var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate());
-        var yesterdayDate = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1) + '-' + (yesterday.getDate());
+        var monthToday = `${ today.getMonth() + 1 }`.padStart(2, '0');
+        var dayToday = `${ today.getDate() }`.padStart(2, '0');
+        var todayDate = `${ today.getFullYear() }-${ monthToday }-${ dayToday }`;
+
+        var monthYesterday = `${ yesterday.getMonth() + 1 }`.padStart(2, '0');
+        var dayYesterday = `${ yesterday.getDate() }`.padStart(2, '0');
+        var yesterdayDate = `${ yesterday.getFullYear() }-${ monthYesterday }-${ dayYesterday }`;
+
+        //var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate());
+        //var yesterdayDate = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1) + '-' + (yesterday.getDate());
         var display = "";
         //  pass to metrics api
         axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)

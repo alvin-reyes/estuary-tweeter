@@ -23,8 +23,18 @@ class MonthlyTwitterStats {
         var last30Days = new Date(new Date().setDate(today.getDate() - 30));
 
         // reformat date
-        var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        var last30DaysDate = last30Days.getFullYear() + '-' + (last30Days.getMonth() + 1) + '-' + last30Days.getDate();
+        //var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        //var last30DaysDate = last30Days.getFullYear() + '-' + (last30Days.getMonth() + 1) + '-' + last30Days.getDate();
+
+        // reformat date
+        var monthToday = `${ today.getMonth() + 1 }`.padStart(2, '0');
+        var dayToday = `${ today.getDate() }`.padStart(2, '0');
+        var todayDate = `${ today.getFullYear() }-${ monthToday }-${ dayToday }`;
+
+        var monthLast30Days = `${ last30Days.getMonth() + 1 }`.padStart(2, '0');
+        var dayLast30Days = `${ last30Days.getDate() }`.padStart(2, '0');
+        var last30DaysDate = `${ last30Days.getFullYear() }-${ monthLast30Days }-${ dayLast30Days }`;
+
         var display = "";
         //  pass to metrics api
         axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)

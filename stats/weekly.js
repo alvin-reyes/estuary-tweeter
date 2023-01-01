@@ -23,8 +23,18 @@ class WeeklyTwitterStats {
         var last7Days = new Date(new Date().setDate(today.getDate() - 7));
 
         // reformat date
-        var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        var last7DaysDate = last7Days.getFullYear() + '-' + (last7Days.getMonth() + 1) + '-' + last7Days.getDate();
+        //var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        //var last7DaysDate = last7Days.getFullYear() + '-' + (last7Days.getMonth() + 1) + '-' + last7Days.getDate();
+
+        // reformat date
+        var monthToday = `${ today.getMonth() + 1 }`.padStart(2, '0');
+        var dayToday = `${ today.getDate() }`.padStart(2, '0');
+        var todayDate = `${ today.getFullYear() }-${ monthToday }-${ dayToday }`;
+
+        var monthLast7Days = `${ last7Days.getMonth() + 1 }`.padStart(2, '0');
+        var dayLast7Days = `${ last7Days.getDate() }`.padStart(2, '0');
+        var last7DaysDate = `${ last7Days.getFullYear() }-${ monthLast7Days }-${ dayLast7Days }`;
+
         var display = "";
         axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)
             .then(async (response) => {

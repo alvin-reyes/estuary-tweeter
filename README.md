@@ -48,12 +48,11 @@ node manual-generator.js 2022-12-30 to 2022-12-31
 from 2022-12-30 to 2022-12-31
 
 🗂️Content deals made over 24 hours: 44
-🗄Content deals size made over 24 hours: 699.4069983139634 GB
+🗄Content deals size made over 24 hours: 699.41 GB
 💼Sealed deals over 24 hours: 0
 🤝Total size of sealed deals over 24 hours: 0 GB
 
-
-For more ℹ️ about Estuary:
+About Estuary:
 🌐https://estuary.tech
-📄https://docs.estuary.tech
+
 ```

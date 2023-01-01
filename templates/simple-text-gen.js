@@ -13,7 +13,7 @@ class TwitterSimpleTextGen {
         let sealedSizeN = Math.round(sealedSize * 100) / 100
 
         this.display = `
-@Estuary_Tech daily stats:
+@Estuary_Tech stats:
 
 from ${from} to ${to}
 
@@ -24,8 +24,7 @@ from ${from} to ${to}
 
 More about Estuary:
 🌐https://estuary.tech
-
-        `;
+`;
 
         return this.display;
     };

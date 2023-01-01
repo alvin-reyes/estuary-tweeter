@@ -7,17 +7,18 @@ const Twitter = require("twitter");
 const MetricsApi = require('./metrics.js');
 const TwitterSimpleTextGen = require('./simple-text-gen.js')
 const axios = require("axios");
+const {TwitterApi} = require("twitter-api-v2");
 
 class DailyTwitterStats {
 
 constructor() {
         this.metricsApi = new MetricsApi();
         this.simpleTextGen = new TwitterSimpleTextGen();
-        this.client = new Twitter({
-            consumer_key: process.env.CONSUMER_KEY,
-            consumer_secret: process.env.CONSUMER_SECRET,
-            access_token_key: process.env.ACCESS_TOKEN_KEY,
-            access_token_secret: process.env.ACCESS_TOKEN_SECRET,
+        this.client = new TwitterApi({
+            appKey: process.env.CONSUMER_KEY,
+            appSecret: process.env.CONSUMER_SECRET,
+            accessToken: process.env.ACCESS_TOKEN_KEY,
+            accessSecret: process.env.ACCESS_TOKEN_SECRET,
         });
 
     }
@@ -29,41 +30,17 @@ constructor() {
         var yesterday = new Date(new Date().setDate(today.getDate() - 1));
 
         // reformat date
-        var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        var yesterdayDate = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1) + '-' + yesterday.getDate();
+        var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate());
+        var yesterdayDate = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1) + '-' + (yesterday.getDate() - 2);
         var display = "";
         //  pass to metrics api
         axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)
-            .then((response) => {
+            .then(async (response) => {
                 display = this.simpleTextGen.generateTwitterPost(response.data, yesterdayDate, todayDate);
-                console.log(display);
-                this.client.post(
-                    'statuses/update',
-                    // { status: canvas.toDataURL() },
-                    {status: display },
-                    function (error, tweet, response) {
-                        if (error) throw error;
-                        console.log(tweet); // Tweet body.
-                        console.log(response); // Raw response object.
-                    }
-                );
+                const {data: createdTweet} = await this.client.v2.tweet(display, {});
+                console.log('Tweet', createdTweet.id, ':', createdTweet.text);
             })
 
-        // parse and return.
-
-
-
-
-        // pass to data
-        // this.client.post(
-        //     'statuses/update',
-        //     {status: this.simpleTextGen.generateTwitterPost() },
-        //     function (error, tweet, response) {
-        //         if (error) throw error;
-        //         console.log(tweet); // Tweet body.
-        //         console.log(response); // Raw response object.
-        //     }
-        // );
     }
 
 }

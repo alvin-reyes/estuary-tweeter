@@ -5,10 +5,10 @@ Simple Estuary stat "Tweeter"
 ## Set up twitter API key
 
 ```
-CONSUMER_KEY=redacted
-CONSUMER_SECRET=redacted
-ACCESS_TOKEN_KEY=redacted
-ACCESS_TOKEN_SECRET=redacted
+CONSUMER_KEY=<TWITTER_API_KEY>
+CONSUMER_SECRET=<TWITTER_API_SECRET>
+ACCESS_TOKEN_KEY=<TWITTER_API_ACCESS_TOKEN_KEY>
+ACCESS_TOKEN_SECRET=<TWITTER_API_ACCESS_TOKEN_SECRET>
 ```
 
 ## Running the script
@@ -37,17 +37,20 @@ Schedule.scheduleJob('0 0 1 * *', () => {
 ## Other utils
 To quickly generate a stats text to tweet.
 ```
-node manual-generator.js 2022-12-29 2022-12-30
+node manual-generator.js 2022-12-30 to 2022-12-31
+```
 
-// output (copy and paste to your twitter account)
-
+## Output
+```
 @Estuary_Tech stats:
 
-from 2022-12-29 to 2022-12-30
+from 2022-12-30 to 2022-12-31
 
-🗂️Content deals: 45
-🗄️Total size of deals: 120815614277
-💼Sealed deals: 0
+🗂️Content deals made over 24 hours: 44
+🗄Content deals size made over 24 hours: 699.4069983139634 GB
+💼Sealed deals over 24 hours: 0
+🤝Total size of sealed deals over 24 hours: 0 GB
+
 
 For more ℹ️ about Estuary:
 🌐https://estuary.tech

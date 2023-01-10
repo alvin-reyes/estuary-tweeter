@@ -38,9 +38,9 @@ class TwitterSimpleTextGen {
 from ${from} to ${to}
 
 🗂Content deals: ${json.totalContentDeals} 
-🗄Content deals size: ${contentSizeN} ${contentSizeUnit}
+🗄Content deals size: ${contentSizeN} ${defaultContentSizeUnit}
 💼Sealed deals: ${json.totalSealedDeals}
-🤝Sealed deals size: ${sealedSizeN} ${sealedSizeUnit}
+🤝Sealed deals size: ${sealedSizeN} ${defaultSealedSizeUnit}
 
 More about Estuary:
 🌐https://estuary.tech

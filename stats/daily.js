@@ -5,8 +5,6 @@ const TwitterSimpleTextGen = require('../templates/simple-text-gen.js')
 const {TwitterApi} = require("twitter-api-v2");
 
 class DailyTwitterStats {
-
-
     constructor() {
         this.metricsApi = new MetricsApi();
         this.simpleTextGen = new TwitterSimpleTextGen();
@@ -20,8 +18,7 @@ class DailyTwitterStats {
 
     run() {
         // get date
-        // get current date and 30 days before
-        var today = new Date();
+        var today = new Date(new Date().setDate(new Date().getDate()) - 1);
         var yesterday = new Date(new Date().setDate(today.getDate() - 1));
 
         // reformat date
@@ -33,8 +30,11 @@ class DailyTwitterStats {
         var dayYesterday = `${ yesterday.getDate() }`.padStart(2, '0');
         var yesterdayDate = `${ yesterday.getFullYear() }-${ monthYesterday }-${ dayYesterday }`;
 
+        console.log(todayDate);
+        console.log(yesterdayDate);
+
         var display = "";
-        //  pass to metrics api
+        //pass to metrics api
         axios.get(this.metricsApi.apiHost + '?from=' + yesterdayDate + '&to=' + todayDate)
             .then(async (response) => {
 

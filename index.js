@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const express = require("express");
 dotenv.config();
 
+
 //   initialize the stats runner
 const DailyTwitterStats = require('./stats/daily.js');
 const WeeklyTwitterStats = require('./stats/weekly.js');
@@ -13,7 +14,6 @@ const MonthlyTwitterStats = require('./stats/monthly.js');
 const daily = new DailyTwitterStats();
 const weekly = new WeeklyTwitterStats();
 const monthly = new MonthlyTwitterStats();
-
 
 // Run daily every day at 1:00pm
 Schedule.scheduleJob('0 1 * * *', () => {
@@ -29,8 +29,6 @@ Schedule.scheduleJob('0 10 * * 5', () => {
 Schedule.scheduleJob('0 0 1 * *', () => {
     monthly.run();
 })
-
-
 
 var app = express();
 app.listen(3000, () => {

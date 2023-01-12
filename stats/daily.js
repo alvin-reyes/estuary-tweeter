@@ -18,8 +18,11 @@ class DailyTwitterStats {
 
     run() {
         // get date
-        var today = new Date(new Date().setDate(new Date().getDate()) - 1);
-        var yesterday = new Date(new Date().setDate(today.getDate() - 1));
+        const today = new Date()
+        const yesterday = new Date(today)
+
+        today.setDate(today.getDate() - 1)
+        yesterday.setDate(yesterday.getDate() - 2)
 
         // reformat date
         var monthToday = `${ today.getMonth() + 1 }`.padStart(2, '0');

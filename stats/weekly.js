@@ -17,8 +17,11 @@ class WeeklyTwitterStats {
 
     run() {
         // get date
-        var today = new Date();
-        var last7Days = new Date(new Date().setDate(today.getDate() - 7));
+        const today = new Date()
+        const last7Days = new Date(today)
+
+        today.setDate(today.getDate() - 1)
+        last7Days.setDate(last7Days.getDate() - 7)
 
         // reformat date
         var monthToday = `${ today.getMonth() + 1 }`.padStart(2, '0');

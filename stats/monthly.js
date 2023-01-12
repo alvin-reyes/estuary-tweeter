@@ -18,8 +18,11 @@ class MonthlyTwitterStats {
 
     run() {
         // get date
-        var today = new Date();
-        var last30Days = new Date(new Date().setDate(today.getDate() - 30));
+        const today = new Date()
+        const last30Days = new Date(today)
+
+        today.setDate(today.getDate() - 1)
+        last30Days.setDate(last30Days.getDate() - 30)
 
         // reformat date
         var monthToday = `${ today.getMonth() + 1 }`.padStart(2, '0');
